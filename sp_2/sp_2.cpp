@@ -14,7 +14,7 @@ WCHAR szTitle[MAX_LOADSTRING];                  // Текст строки за�
 WCHAR szWindowClass[MAX_LOADSTRING];            // имя класса главного окна
 
 INT numOfColumns = 4;
-INT numOfRows = 6;
+INT numOfRows = 3;
 WCHAR strCellText[MAX_BUFFERSTRING];
 
 // Functions
@@ -195,8 +195,13 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                 colorBack = RGB(66, 135, 245),   // цвет заднего фона
                 colorLine = RGB(66, 135, 245);  // цвет линий таблицы
 
-            HFONT hFont = CreateFont(22, 0, 0, 0, 0, 0, 0, 0, DEFAULT_CHARSET, 0, 0, 0, 0, _T("Consolas"));
-            SendMessage(hWnd, WM_SETFONT, (WPARAM)hFont, NULL);
+          
+
+            HFONT newFont = CreateFont(14, 0, 0, 0, 0, 0, 0, 0,
+                DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS,
+                DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, _T("Helvetica"));
+            SetTextColor(hdc, RGB(0, 0, 0));
+            SelectObject(hdc, newFont);
 
             RECT wndRect;                       // размеры окна
             GetClientRect(hWnd, &wndRect);      // получаем размер и записываем его в переменную
